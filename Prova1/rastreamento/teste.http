@@ -1,0 +1,61 @@
+### Pacote Endpoints
+GET http://localhost:8080/pacotes
+
+### 
+POST http://localhost:8080/pacotes
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "id": "1",
+  "destinatario": "João Silva",
+  "endereco": {
+    "rua": "Rua A",
+    "numero": "123",
+    "cidade": "Cidade B",
+    "estado": "Estado C",
+    "cep": "12345-678"
+  },
+  "status": "pendente"
+}
+
+###
+GET http://localhost:8080/pacotes/1
+
+###
+PUT http://localhost:8080/pacotes/1
+Content-Type: application/json
+
+{
+  "id": "1",
+  "destinatario": "João Silva",
+  "endereco": {
+    "rua": "Rua A",
+    "numero": "123",
+    "cidade": "Cidade B",
+    "estado": "Estado C",
+    "cep": "12345-678"
+  },
+  "status": "em trânsito"
+}
+
+###
+DELETE http://localhost:8080/pacotes/1
+
+
+###
+POST http://localhost:8080/enderecos
+Content-Type: application/json
+
+{
+  "rua": "Rua A",
+  "numero": "123",
+  "cidade": "Cidade B",
+  "estado": "Estado C",
+  "cep": "12345-678"
+}
+
+### Endereco Endpoints
+GET http://localhost:8080/enderecos
+
+
