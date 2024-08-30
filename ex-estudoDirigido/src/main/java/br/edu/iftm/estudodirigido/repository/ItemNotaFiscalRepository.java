@@ -1,6 +1,6 @@
-package br.edu.iftm.query.repository;
+package br.edu.iftm.estudodirigido.repository;
 
-import br.edu.iftm.query.model.ItemNotaFiscal;
+import br.edu.iftm.estudodirigido.domain.ItemNotaFiscal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -8,12 +8,10 @@ import java.util.List;
 
 public interface ItemNotaFiscalRepository extends JpaRepository<ItemNotaFiscal, Long> {
 
-    List<ItemNotaFiscal> findByNomeContainingIgnoreCase(String nome);
-    
+
     @Query("SELECT i FROM ItemNotaFiscal i WHERE i.desconto = 0")
     List<ItemNotaFiscal> findItemsWithNoDiscount();
 
-    
     @Query("SELECT i FROM ItemNotaFiscal i WHERE i.desconto > 0")
     List<ItemNotaFiscal> findItemsWithDiscount();
 

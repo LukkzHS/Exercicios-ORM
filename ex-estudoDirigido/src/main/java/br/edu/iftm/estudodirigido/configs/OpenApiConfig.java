@@ -1,4 +1,4 @@
-package br.edu.iftm.query.configs;
+package br.edu.iftm.estudodirigido.configs;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;

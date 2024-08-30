@@ -1,13 +1,11 @@
 package br.edu.iftm.estudodirigido.resource;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.iftm.estudodirigido.domain.ItemNotaFiscal;
@@ -23,15 +21,6 @@ public class ItemNotaFiscalController {
     @Autowired
     private ItemNotaFiscalService service;
 
-    @GetMapping("/produtos-por-nome")
-    @Operation(summary = "Retorna os itens por nome do produto", description = "Retorna todos os itens de nota fiscal que correspondem ao nome do produto", tags = {
-            "ItemNotaFiscal" }, responses = {
-                    @ApiResponse(responseCode = "200", description = "Itens retornados com sucesso"),
-                    @ApiResponse(responseCode = "404", description = "Nenhum item encontrado")
-            })
-    public List<ItemNotaFiscal> getItensPorNomeProduto(@RequestParam String nomeProduto) {
-        return service.findItensByNomeProduto(nomeProduto);
-    }
 
     @GetMapping("/sem-desconto")
     @Operation(summary = "Retorna todos os itens sem desconto", description = "Retorna todos os itens de nota fiscal que não possuem desconto", tags = {

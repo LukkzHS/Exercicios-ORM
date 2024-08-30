@@ -15,13 +15,6 @@ public class ItemNotaFiscalService {
     @Autowired
     private ItemNotaFiscalRepository repository;
 
-    public List<ItemNotaFiscal> findItensByNomeProduto(String nomeProduto) {
-        List<ItemNotaFiscal> items = repository.findByNomeContainingIgnoreCase(nomeProduto);
-        if (items.isEmpty()) {
-            throw new ItemNotFoundException("No items found with the product name: " + nomeProduto);
-        }
-        return items;
-    }
 
     public List<ItemNotaFiscal> getItensSemDesconto() {
         List<ItemNotaFiscal> items = repository.findItemsWithNoDiscount();

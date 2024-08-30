@@ -1,4 +1,4 @@
-package br.edu.iftm.query.exception;
+package br.edu.iftm.estudodirigido.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

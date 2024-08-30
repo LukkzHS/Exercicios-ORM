@@ -1,4 +1,4 @@
-package br.edu.iftm.query.model;
+package br.edu.iftm.estudodirigido.domain;
 
 import java.math.BigDecimal;
 
