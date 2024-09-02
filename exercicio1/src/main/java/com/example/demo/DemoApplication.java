@@ -7,12 +7,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.demo.Repository.CustomerRepository;
+import com.example.demo.repository.CustomerRepository;
 
 @SpringBootApplication
 public class DemoApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(DemoApplication.class);
+    private static final String EMPTY_STRING = "";
+    private static final String ARAUJO = "Araujo"; // SONARLINT S1192
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -20,28 +22,27 @@ public class DemoApplication {
 
 	@Bean
 	public CommandLineRunner demo(CustomerRepository customerRepository) {
-		return (args) -> {
+        // SONARLINT 1611
+		return args -> {
 
-			customerRepository.save(new Customer("Cristiano", "Araujo"));
-			customerRepository.save(new Customer("Claudia", "Rocha"));
-			customerRepository.save(new Customer("Caio", "Araujo"));
-			customerRepository.save(new Customer("Greg", "Ferreira"));
-			customerRepository.save(new Customer("Gustavo", "Garcia"));
+            customerRepository.save(new Customer("Cristiano", ARAUJO));
+            customerRepository.save(new Customer("Claudia", "Rocha"));
+            customerRepository.save(new Customer("Caio", ARAUJO));
+            customerRepository.save(new Customer("Greg", "Ferreira"));
+            customerRepository.save(new Customer("Gustavo", "Garcia"));
 
-			customerRepository.findAll().forEach(customer -> {
-				log.info(customer.toString());
-			});
-			log.info("");
+            // SONARLINT S1602 && S2629 
+            if (log.isInfoEnabled()) {
+                customerRepository.findAll().forEach(customer -> log.info(customer.toString()));
+            
+            Customer customer = customerRepository.findById(1L);
+            log.info(customer.toString());
+            log.info(EMPTY_STRING);
 
-			Customer customer = customerRepository.findById(1L);
-			log.info(customer.toString());
-			log.info("");
-
-			customerRepository.findByLastName("Araujo").forEach(bauer -> {
-				log.info(bauer.toString());
-			});
-			log.info("");
-		};
-	}
-
+            customerRepository.findByLastName(ARAUJO).forEach(bauer -> log.info(bauer.toString()));
+            log.info(EMPTY_STRING);
+            
+            }
+        };
+    }
 }
