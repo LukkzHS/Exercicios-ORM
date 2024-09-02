@@ -9,30 +9,40 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data @NoArgsConstructor
+@Data
+@NoArgsConstructor
 @Entity
 public class ItemDeLeilao {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
     private double valorMinimo;
     private boolean leilaoAberto;
 
     @OneToMany
-    private List<Lance> lancesRecebidos = new ArrayList<Lance>();
+    private List<Lance> lancesRecebidos;
 
     @OneToOne
     private Lance lanceVencedor;
 
-    public ItemDeLeilao(String nome, double valorMinimo, boolean leilaoAberto){
+    public ItemDeLeilao(String nome, double valorMinimo, boolean leilaoAberto) {
         this.nome = nome;
         this.valorMinimo = valorMinimo;
         this.leilaoAberto = leilaoAberto;
+        this.lancesRecebidos = new ArrayList<>(); // SonarLint S2293
+    }
+
+    public ItemDeLeilao(String nome, double valorMinimo, boolean leilaoAberto, List<Lance> lancesRecebidos, Lance lanceVencedor) {
+        this.nome = nome;
+        this.valorMinimo = valorMinimo;
+        this.leilaoAberto = leilaoAberto;
+        this.lancesRecebidos = lancesRecebidos != null ? lancesRecebidos : new ArrayList<>();
+        this.lanceVencedor = lanceVencedor;
     }
 }
